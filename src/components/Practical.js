@@ -1,36 +1,38 @@
 import React from 'react';
 
+function Company(props) {
+  return(
+    <div>
+      <p>{props.company.name}</p>
+      <p>{props.company.position}</p>
+      <p>{props.company.responsibilities}</p>
+      <p>
+        {props.company.startDate} -{' '}
+        {props.company.endDate}
+      </p>
+    </div>
+  )
+}
+
 class Practical extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      companies: [
-        {
-          name: 'Awesome Inc.',
-          position: 'Engineer of Awesomeness',
-          responsibilities: 'Making things awesome.',
-          startDate: '2005',
-          endDate: 'current',
-        },
-      ],
+      dummy: 'dummy',
     };
   }
 
   // INCLUDE EDIT AND SUBMIT BUTTONS
 
   render() {
+    const companies = this.props.companies;
+    const list = companies.map((company, i) => {
+      return <Company key={i} company={company}/>
+    })
     return (
       <div className="Practical">
         <h3>Practical</h3>
-        {/* MOVE EACH COMPANY INTO ITS OWN COMPONENT */}
-        <p>{this.state.companies[0].name}</p>
-        <p>{this.state.companies[0].position}</p>
-        <p>{this.state.companies[0].responsibilities}</p>
-        <p>
-          {this.state.companies[0].startDate} -{' '}
-          {this.state.companies[0].endDate}
-        </p>
-        <p>Auto Deploy Changes?</p>
+        {list}
       </div>
     );
   }

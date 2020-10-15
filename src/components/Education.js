@@ -1,32 +1,36 @@
 import React from 'react';
 
+function School(props) {
+  return(
+    <div>
+      <p>{props.school.name}</p>
+      <p>{props.school.study}</p>
+      <p>
+        {props.school.startDate} - {props.school.endDate}
+      </p>
+    </div>
+  )
+}
+
 class Education extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      schools: [
-        {
-          name: 'University of Awesome',
-          study: 'Awesomeness',
-          startDate: '2000',
-          endDate: 'current',
-        },
-      ],
+      dummy: 'dummy',
     };
   }
 
   // INCLUDE EDIT AND SUBMIT BUTTONS
 
   render() {
+    const schools = this.props.schools
+    const list = schools.map((school, i) => {
+      return <School key={i} school={school}/>
+    })
     return (
       <div className="Education">
         <h3>Education</h3>
-        {/* MOVE EACH SCHOOL INTO ITS OWN COMPONENT */}
-        <p>{this.state.schools[0].name}</p>
-        <p>{this.state.schools[0].study}</p>
-        <p>
-          {this.state.schools[0].startDate} - {this.state.schools[0].endDate}
-        </p>
+        {list}
       </div>
     );
   }
