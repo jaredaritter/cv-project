@@ -1,5 +1,6 @@
 import React from 'react';
 import General from './components/General';
+import GeneralEdit from './components/GeneralEdit';
 import Education from './components/Education';
 import Practical from './components/Practical';
 import './App.css';
@@ -21,6 +22,7 @@ class App extends React.Component {
         name: 'Jared',
         email: 'awesome@email.com',
         phone: '555-555-5555',
+        editting: false,
       }, 
       education: {
         schools: [
@@ -50,12 +52,22 @@ class App extends React.Component {
         ]
       }
     };
+    // this.generalChoice = this.GeneralChoice.bind(this);
+  }
+
+  GeneralChoice() {
+    if (this.state.general.editting) {
+      return <GeneralEdit general={this.state.general}/>;
+    } else {
+      return <General general={this.state.general}/>;
+    }
   }
 
   render() {
+    const general = this.GeneralChoice();
     return (
       <div className="App">
-        <General general={this.state.general}/>
+        {general}
         <Education schools={this.state.education.schools}/>
         <Practical companies={this.state.practical.companies}/>
       </div>
