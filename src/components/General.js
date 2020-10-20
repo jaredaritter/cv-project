@@ -18,12 +18,11 @@ class General extends React.Component {
     const { name, email, phone } = this.props.general;
     return (
       <div className="General">
-        <h3>
-          General <button onClick={this.setEditting}>Edit</button>
-        </h3>
+        <h3>General</h3>
         <p>{name}</p>
         <p>{email}</p>
         <p>{phone}</p>
+        <button onClick={this.setEditting}>Edit</button>
       </div>
     );
   }

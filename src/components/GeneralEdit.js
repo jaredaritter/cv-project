@@ -25,10 +25,8 @@ class GeneralEdit extends React.Component {
     const newGeneral = { ...this.state, editting: false };
     this.props.handleSubmit(section, newGeneral);
   };
-  // INCLUDE EDIT AND SUBMIT BUTTONS
 
   render() {
-    const { name, email, phone } = this.props.general;
     return (
       <div className="General">
         <h3>General</h3>
@@ -37,14 +35,28 @@ class GeneralEdit extends React.Component {
           <input
             type="text"
             name="name"
+            placeholder="Name"
             value={this.state.name}
+            onChange={this.handleChange}
+          />
+          <label>Email: </label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={this.state.email}
+            onChange={this.handleChange}
+          />
+          <label>Phone: </label>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Telephone"
+            value={this.state.phone}
             onChange={this.handleChange}
           />
           <button type="submit">Submit</button>
         </form>
-        <p>{name}</p>
-        <p>{email}</p>
-        <p>{phone}</p>
       </div>
     );
   }
