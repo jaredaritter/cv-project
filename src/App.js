@@ -13,6 +13,7 @@ import './App.css';
 //   - DON'T FORGET TO BIND THIS
 //   - HANDLERS IN PARENT FUNCTIONS
 // FIGURE OUT HOW TO PULL NAME OF VARIABLE TO CONSOLIDATE HANDLESUBMIT FUNCTION
+//   - *SEND SECTION NAME MANUALLY AS VARIABLE FROM EACH SECTION. WORKS FINE.
 // LISTS ON EDUCATION AND PRACTICAL MAY BE RENDERING TWICE BASED ON DOUBLE CONSOLE.LOG (NOT PRIORITY, ADVANCED)
 
 class App extends React.Component {
@@ -23,7 +24,7 @@ class App extends React.Component {
         name: 'Jared',
         email: 'awesome@email.com',
         phone: '555-555-5555',
-        editting: true,
+        editting: false,
       },
       education: {
         schools: [
@@ -54,6 +55,7 @@ class App extends React.Component {
       },
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setEditting = this.setEditting.bind(this);
   }
 
   handleSubmit(section, data) {
@@ -62,8 +64,16 @@ class App extends React.Component {
     });
   }
 
+  // THIS IS VERY LIKELY THE WRONG WAY TO HANDLE THIS BUT WILL HAVE TO WORK FOR NOW UNTIL I KNOW THE MORE APPROPRIATE WAY
+  setEditting(section) {
+    const newSection = this.state[section];
+    newSection.editting = true;
+    this.setState({
+      [section]: newSection,
+    });
+  }
+
   render() {
-    console.log(this.state.general.editting);
     return (
       <div className="App">
         {this.state.general.editting ? (
@@ -72,7 +82,10 @@ class App extends React.Component {
             handleSubmit={this.handleSubmit}
           />
         ) : (
-          <General general={this.state.general} />
+          <General
+            general={this.state.general}
+            setEditting={this.setEditting}
+          />
         )}
         <Education schools={this.state.education.schools} />
         <Practical companies={this.state.practical.companies} />
