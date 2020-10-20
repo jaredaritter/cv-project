@@ -30,7 +30,6 @@ class Practical extends React.Component {
           {this.state.companies[0].startDate} -{' '}
           {this.state.companies[0].endDate}
         </p>
-        <p>Auto Deploy Changes?</p>
       </div>
     );
   }
