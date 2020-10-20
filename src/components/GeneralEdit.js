@@ -1,6 +1,6 @@
 import React from 'react';
 
-class General extends React.Component {
+class GeneralEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,7 @@ class General extends React.Component {
     const { name, email, phone } = this.props.general;
     return (
       <div className="General">
-        <h3>General <button>Edit</button></h3> 
+        <h3>{this.state.dummy} <button>Submit</button></h3> 
         <p>{name}</p>
         <p>{email}</p>
         <p>{phone}</p>
@@ -23,4 +23,4 @@ class General extends React.Component {
   }
 }
 
-export default General;
+export default GeneralEdit;
