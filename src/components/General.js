@@ -14,7 +14,9 @@ class General extends React.Component {
     const { name, email, phone } = this.props.general;
     return (
       <div className="General">
-        <h3>General <button>Edit</button></h3> 
+        <h3>
+          General <button>Edit</button>
+        </h3>
         <p>{name}</p>
         <p>{email}</p>
         <p>{phone}</p>

@@ -6,13 +6,14 @@ import Practical from './components/Practical';
 import './App.css';
 
 // TODO
-// LISTS ON EDUCATION AND PRACTICAL MAY BE RENDERING TWICE BASED ON DOUBLE CONSOLE.LOG (NOT PRIORITY, ADVANCED)
 // BUILD EDIT PAGES.
 //   - WANT TO EDIT BY COMPONENT AND EDIT ALL COMPONENT FIELDS AT THE SAME TIME WITH SINGLE FORM
 //   - WILL NEED ONCHANGE LISTENERS LOCALLY
 //   - MAY NEED TO CHANGE LIST ITEMS TO CLASSES TO ALLOW LOCAL STORAGE OF ONCHANGE VALUES
 //   - DON'T FORGET TO BIND THIS
 //   - HANDLERS IN PARENT FUNCTIONS
+// FIGURE OUT HOW TO PULL NAME OF VARIABLE TO CONSOLIDATE HANDLESUBMIT FUNCTION
+// LISTS ON EDUCATION AND PRACTICAL MAY BE RENDERING TWICE BASED ON DOUBLE CONSOLE.LOG (NOT PRIORITY, ADVANCED)
 
 class App extends React.Component {
   constructor(props) {
@@ -22,8 +23,8 @@ class App extends React.Component {
         name: 'Jared',
         email: 'awesome@email.com',
         phone: '555-555-5555',
-        editting: false,
-      }, 
+        editting: true,
+      },
       education: {
         schools: [
           {
@@ -37,8 +38,8 @@ class App extends React.Component {
             study: 'Amazingness',
             startDate: '2000',
             endDate: 'current',
-          }
-        ]
+          },
+        ],
       },
       practical: {
         companies: [
@@ -48,28 +49,33 @@ class App extends React.Component {
             responsibilities: 'Making things awesome.',
             startDate: '2005',
             endDate: 'current',
-          }
-        ]
-      }
+          },
+        ],
+      },
     };
-    // this.generalChoice = this.GeneralChoice.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  GeneralChoice() {
-    if (this.state.general.editting) {
-      return <GeneralEdit general={this.state.general}/>;
-    } else {
-      return <General general={this.state.general}/>;
-    }
+  handleSubmit(section, data) {
+    this.setState({
+      [section]: data,
+    });
   }
 
   render() {
-    const general = this.GeneralChoice();
+    console.log(this.state.general.editting);
     return (
       <div className="App">
-        {general}
-        <Education schools={this.state.education.schools}/>
-        <Practical companies={this.state.practical.companies}/>
+        {this.state.general.editting ? (
+          <GeneralEdit
+            general={this.state.general}
+            handleSubmit={this.handleSubmit}
+          />
+        ) : (
+          <General general={this.state.general} />
+        )}
+        <Education schools={this.state.education.schools} />
+        <Practical companies={this.state.practical.companies} />
       </div>
     );
   }
