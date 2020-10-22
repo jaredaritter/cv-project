@@ -16,6 +16,7 @@ import './App.css';
 //   - HANDLERS IN PARENT FUNCTIONS
 // FIGURE OUT HOW TO PULL NAME OF VARIABLE TO CONSOLIDATE HANDLESUBMIT FUNCTION
 //   - *SEND SECTION NAME MANUALLY AS VARIABLE FROM EACH SECTION. WORKS FINE.
+// MAY NEED SEPARATE BUTTON FOR ADDING NEW CONTENT
 // WILL NEED TO DECIDE WHETHER TO HAVE EDUCATION AND PRACTICAL BE OBJECTS ARRAYS
 // LISTS ON EDUCATION AND PRACTICAL MAY BE RENDERING TWICE BASED ON DOUBLE CONSOLE.LOG (NOT PRIORITY, ADVANCED)
 
@@ -31,30 +32,20 @@ class App extends React.Component {
         editting: false,
       },
       education: {
-        schools: [
-          {
-            name: 'University of Awesome',
-            study: 'Awesomeness',
-            startDate: '2000',
-            endDate: 'current',
-          },
-          {
-            name: 'University of Amazing',
-            study: 'Amazingness',
-            startDate: '2000',
-            endDate: 'current',
-          },
-        ],
+        name: 'University of Awesome',
+        study: 'Awesomeness',
+        startDate: '2000',
+        endDate: 'current',
+        editting: false,
       },
-      practical: [
-        {
-          name: 'Awesome Inc.',
-          position: 'Engineer of Awesomeness',
-          responsibilities: 'Making things awesome.',
-          startDate: '2005',
-          endDate: 'current',
-        },
-      ],
+      practical: {
+        name: 'Awesome Inc.',
+        position: 'Engineer of Awesomeness',
+        responsibilities: 'Making things awesome.',
+        startDate: '2005',
+        endDate: 'current',
+        editting: false,
+      },
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setEditting = this.setEditting.bind(this);
@@ -92,23 +83,23 @@ class App extends React.Component {
         )}
         {this.state.education.editting ? (
           <EducationEdit
-            schools={this.state.education.schools}
+            school={this.state.education}
             handleSubmit={this.handleSubmit}
           />
         ) : (
           <Education
-            schools={this.state.education.schools}
+            school={this.state.education}
             setEditting={this.setEditting}
           />
         )}
         {this.state.practical.editting ? (
           <PracticalEdit
-            companies={this.state.practical}
+            company={this.state.practical}
             handleSubmit={this.handleSubmit}
           />
         ) : (
           <Practical
-            companies={this.state.practical}
+            company={this.state.practical}
             setEditting={this.setEditting}
           />
         )}

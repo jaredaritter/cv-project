@@ -20,22 +20,15 @@ class Education extends React.Component {
     };
   }
 
-  // INCLUDE EDIT AND SUBMIT BUTTONS
   setEditting = () => {
     this.props.setEditting(this.state.section);
   };
 
   render() {
-    const schools = this.props.schools;
-    console.log(typeof schools);
-    const list = schools.map((school, i) => {
-      return <School key={i} school={school} />;
-    });
-
     return (
       <div className="Education">
         <h3>Education</h3>
-        {list}
+        <School school={this.props.school} />
         <button onClick={this.setEditting}>Edit</button>
       </div>
     );

@@ -27,14 +27,10 @@ class Practical extends React.Component {
   };
 
   render() {
-    const companies = this.props.companies;
-    const list = companies.map((company, i) => {
-      return <Company key={i} company={company} />;
-    });
     return (
       <div className="Practical">
         <h3>Practical</h3>
-        {list}
+        <Company company={this.props.company} />
         <button onClick={this.setEditting}>Edit</button>
       </div>
     );
