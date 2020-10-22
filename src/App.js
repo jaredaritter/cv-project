@@ -22,6 +22,7 @@ import './App.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    // CHOOSING TO HOLD STATE IN APP COMPONENT AND USE CONDITIONAL RENDERING TO PASS DOWN DATA AS PROPS
     this.state = {
       general: {
         name: 'Jared',
@@ -75,6 +76,7 @@ class App extends React.Component {
   }
 
   render() {
+    // IT'S LIKELY THAT BETTER PRACTICE WOULD BE TO HAVE SEPERATE COMPONENTS WITH CONDITIONAL LOGIC AND THEN SEND RETURN TO THIS RENDER. THIS LOOKS MESSY.
     return (
       <div className="App">
         {this.state.general.editting ? (
