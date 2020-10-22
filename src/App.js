@@ -2,7 +2,9 @@ import React from 'react';
 import General from './components/General';
 import GeneralEdit from './components/GeneralEdit';
 import Education from './components/Education';
+import EducationEdit from './components/EducationEdit';
 import Practical from './components/Practical';
+import PracticalEdit from './components/PracticalEdit';
 import './App.css';
 
 // TODO
@@ -14,6 +16,7 @@ import './App.css';
 //   - HANDLERS IN PARENT FUNCTIONS
 // FIGURE OUT HOW TO PULL NAME OF VARIABLE TO CONSOLIDATE HANDLESUBMIT FUNCTION
 //   - *SEND SECTION NAME MANUALLY AS VARIABLE FROM EACH SECTION. WORKS FINE.
+// WILL NEED TO DECIDE WHETHER TO HAVE EDUCATION AND PRACTICAL BE OBJECTS ARRAYS
 // LISTS ON EDUCATION AND PRACTICAL MAY BE RENDERING TWICE BASED ON DOUBLE CONSOLE.LOG (NOT PRIORITY, ADVANCED)
 
 class App extends React.Component {
@@ -26,20 +29,22 @@ class App extends React.Component {
         phone: '555-555-5555',
         editting: false,
       },
-      education: [
-        {
-          name: 'University of Awesome',
-          study: 'Awesomeness',
-          startDate: '2000',
-          endDate: 'current',
-        },
-        {
-          name: 'University of Amazing',
-          study: 'Amazingness',
-          startDate: '2000',
-          endDate: 'current',
-        },
-      ],
+      education: {
+        schools: [
+          {
+            name: 'University of Awesome',
+            study: 'Awesomeness',
+            startDate: '2000',
+            endDate: 'current',
+          },
+          {
+            name: 'University of Amazing',
+            study: 'Amazingness',
+            startDate: '2000',
+            endDate: 'current',
+          },
+        ],
+      },
       practical: [
         {
           name: 'Awesome Inc.',
@@ -83,8 +88,28 @@ class App extends React.Component {
             setEditting={this.setEditting}
           />
         )}
-        <Education schools={this.state.education} />
-        <Practical companies={this.state.practical} />
+        {this.state.education.editting ? (
+          <EducationEdit
+            schools={this.state.education.schools}
+            handleSubmit={this.handleSubmit}
+          />
+        ) : (
+          <Education
+            schools={this.state.education.schools}
+            setEditting={this.setEditting}
+          />
+        )}
+        {this.state.practical.editting ? (
+          <PracticalEdit
+            companies={this.state.practical}
+            handleSubmit={this.handleSubmit}
+          />
+        ) : (
+          <Practical
+            companies={this.state.practical}
+            setEditting={this.setEditting}
+          />
+        )}
       </div>
     );
   }

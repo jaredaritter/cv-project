@@ -22,6 +22,10 @@ class Practical extends React.Component {
   }
 
   // INCLUDE EDIT AND SUBMIT BUTTONS
+  setEditting = () => {
+    const section = 'practical';
+    this.props.setEditting(section);
+  };
 
   render() {
     const companies = this.props.companies;
@@ -32,6 +36,7 @@ class Practical extends React.Component {
       <div className="Practical">
         <h3>Practical</h3>
         {list}
+        <button onClick={this.setEditting}>Edit</button>
       </div>
     );
   }
