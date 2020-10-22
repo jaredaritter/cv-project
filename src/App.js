@@ -26,33 +26,29 @@ class App extends React.Component {
         phone: '555-555-5555',
         editting: false,
       },
-      education: {
-        schools: [
-          {
-            name: 'University of Awesome',
-            study: 'Awesomeness',
-            startDate: '2000',
-            endDate: 'current',
-          },
-          {
-            name: 'University of Amazing',
-            study: 'Amazingness',
-            startDate: '2000',
-            endDate: 'current',
-          },
-        ],
-      },
-      practical: {
-        companies: [
-          {
-            name: 'Awesome Inc.',
-            position: 'Engineer of Awesomeness',
-            responsibilities: 'Making things awesome.',
-            startDate: '2005',
-            endDate: 'current',
-          },
-        ],
-      },
+      education: [
+        {
+          name: 'University of Awesome',
+          study: 'Awesomeness',
+          startDate: '2000',
+          endDate: 'current',
+        },
+        {
+          name: 'University of Amazing',
+          study: 'Amazingness',
+          startDate: '2000',
+          endDate: 'current',
+        },
+      ],
+      practical: [
+        {
+          name: 'Awesome Inc.',
+          position: 'Engineer of Awesomeness',
+          responsibilities: 'Making things awesome.',
+          startDate: '2005',
+          endDate: 'current',
+        },
+      ],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setEditting = this.setEditting.bind(this);
@@ -87,8 +83,8 @@ class App extends React.Component {
             setEditting={this.setEditting}
           />
         )}
-        <Education schools={this.state.education.schools} />
-        <Practical companies={this.state.practical.companies} />
+        <Education schools={this.state.education} />
+        <Practical companies={this.state.practical} />
       </div>
     );
   }
