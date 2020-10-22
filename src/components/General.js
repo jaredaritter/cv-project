@@ -4,14 +4,13 @@ class General extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dummy: 'dummy',
+      section: 'general',
     };
   }
 
   // INCLUDE EDIT AND SUBMIT BUTTONS
   setEditting = () => {
-    const section = 'general';
-    this.props.setEditting(section);
+    this.props.setEditting(this.state.section);
   };
 
   render() {
