@@ -12,27 +12,20 @@ function School(props) {
   );
 }
 
-class Education extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      section: 'education',
-    };
-  }
+function Education(props) {
+  const section = 'education';
 
-  setEditting = () => {
-    this.props.setEditting(this.state.section);
+  const setEditting = () => {
+    props.setEditting(section);
   };
 
-  render() {
-    return (
-      <div className="Education">
-        <h3>Education</h3>
-        <School school={this.props.school} />
-        <button onClick={this.setEditting}>Edit</button>
-      </div>
-    );
-  }
+  return (
+    <div className="Education">
+      <h3>Education</h3>
+      <School school={props.school} />
+      <button onClick={setEditting}>Edit</button>
+    </div>
+  );
 }
 
 export default Education;

@@ -13,28 +13,20 @@ function Company(props) {
   );
 }
 
-class Practical extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      section: 'practical',
-    };
-  }
-
+function Practical(props) {
+  const section = 'practical';
   // INCLUDE EDIT AND SUBMIT BUTTONS
-  setEditting = () => {
-    this.props.setEditting(this.state.section);
+  const setEditting = () => {
+    props.setEditting(section);
   };
 
-  render() {
-    return (
-      <div className="Practical">
-        <h3>Practical</h3>
-        <Company company={this.props.company} />
-        <button onClick={this.setEditting}>Edit</button>
-      </div>
-    );
-  }
+  return (
+    <div className="Practical">
+      <h3>Practical</h3>
+      <Company company={props.company} />
+      <button onClick={setEditting}>Edit</button>
+    </div>
+  );
 }
 
 export default Practical;

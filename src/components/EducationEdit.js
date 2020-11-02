@@ -1,73 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class EducationEdit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: this.props.school.name,
-      study: this.props.school.study,
-      startDate: this.props.school.startDate,
-      endDate: this.props.school.endDate,
-    };
-  }
+function EducationEdit(props) {
+  const [name, setName] = useState(props.school.name);
+  const [study, setStudy] = useState(props.school.study);
+  const [startDate, setStartDate] = useState(props.school.startDate);
+  const [endDate, setEndDate] = useState(props.school.endDate);
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-
-    this.setState(() => ({
-      [name]: value,
-    }));
-  };
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const section = 'education';
-    const newEducation = { ...this.state, editting: false };
-    this.props.handleSubmit(section, newEducation);
+    const education = {
+      name: name,
+      study: study,
+      startDate: startDate,
+      endDate: endDate,
+      editting: false,
+    };
+    props.handleSubmit(education);
   };
 
-  render() {
-    return (
-      <div className="Education">
-        <h3>Education</h3>
-        <form onSubmit={this.handleSubmit}>
-          <label>Name: </label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-          <label>Study: </label>
-          <input
-            type="text"
-            name="study"
-            placeholder="Study"
-            value={this.state.study}
-            onChange={this.handleChange}
-          />
-          <label>Start Date: </label>
-          <input
-            type="text"
-            name="start-date" // CHANGE NAME TO MATCH STATE VARIABLE
-            placeholder="Start Date"
-            value={this.state.startDate}
-            onChange={this.handleChange}
-          />
-          <label>End Date: </label>
-          <input
-            type="text"
-            name="end-date" // CHANGE NAME TO MATCH STATE VARIABLE
-            placeholder="End Date"
-            value={this.state.endDate}
-            onChange={this.handleChange}
-          />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className="Education">
+      <h3>Education</h3>
+      <form onSubmit={handleSubmit}>
+        <label>Name: </label>
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <label>Study: </label>
+        <input
+          type="text"
+          name="study"
+          placeholder="Study"
+          value={study}
+          onChange={(e) => setStudy(e.target.value)}
+        />
+        <label>Start Date: </label>
+        <input
+          type="text"
+          name="start-date" // CHANGE NAME TO MATCH STATE VARIABLE
+          placeholder="Start Date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+        <label>End Date: </label>
+        <input
+          type="text"
+          name="end-date" // CHANGE NAME TO MATCH STATE VARIABLE
+          placeholder="End Date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
 }
 
 export default EducationEdit;

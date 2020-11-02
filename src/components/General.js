@@ -1,30 +1,22 @@
 import React from 'react';
 
-class General extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      section: 'general',
-    };
-  }
+function General(props) {
+  const section = 'general';
+  const { name, email, phone } = props.general;
 
-  // INCLUDE EDIT AND SUBMIT BUTTONS
-  setEditting = () => {
-    this.props.setEditting(this.state.section);
+  const setEditting = () => {
+    props.setEditting(section);
   };
 
-  render() {
-    const { name, email, phone } = this.props.general;
-    return (
-      <div className="General">
-        <h3>General</h3>
-        <p>{name}</p>
-        <p>{email}</p>
-        <p>{phone}</p>
-        <button onClick={this.setEditting}>Edit</button>
-      </div>
-    );
-  }
+  return (
+    <div className="General">
+      <h3>General</h3>
+      <p>{name}</p>
+      <p>{email}</p>
+      <p>{phone}</p>
+      <button onClick={setEditting}>Edit</button>
+    </div>
+  );
 }
 
 export default General;

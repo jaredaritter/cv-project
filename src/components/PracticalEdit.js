@@ -1,82 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class PracticalEdit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: this.props.company.name,
-      position: this.props.company.position,
-      responsibilities: this.props.company.responsibilities,
-      startDate: this.props.company.startDate,
-      endDate: this.props.company.endDate,
-    };
-  }
+function PracticalEdit(props) {
+  const [name, setName] = useState(props.company.name);
+  const [position, setPosition] = useState(props.company.position);
+  const [responsibilities, setResponsibilities] = useState(
+    props.company.responsibilities
+  );
+  const [startDate, setStartDate] = useState(props.company.startDate);
+  const [endDate, setEndDate] = useState(props.company.endDate);
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-
-    this.setState(() => ({
-      [name]: value,
-    }));
-  };
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const section = 'practical';
-    const newPractical = { ...this.state, editting: false };
-    this.props.handleSubmit(section, newPractical);
+    const practical = {
+      name: name,
+      position: position,
+      responsibilities: responsibilities,
+      startDate: startDate,
+      endDate: endDate,
+      editting: false,
+    };
+    props.handleSubmit(practical);
   };
 
-  render() {
-    return (
-      <div className="Practical">
-        <h3>Practical</h3>
-        <form onSubmit={this.handleSubmit}>
-          <label>Name: </label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-          <label>Position: </label>
-          <input
-            type="text"
-            name="position"
-            placeholder="Study"
-            value={this.state.position}
-            onChange={this.handleChange}
-          />
-          <label>Responsibilities: </label>
-          <input
-            type="text"
-            name="responsibilities"
-            placeholder="Responsibilities"
-            value={this.state.responsibilities}
-            onChange={this.handleChange}
-          />
-          <label>Start Date: </label>
-          <input
-            type="text"
-            name="start-date" // CHANGE NAME TO MATCH STATE VARIABLE
-            placeholder="Start Date"
-            value={this.state.startDate}
-            onChange={this.handleChange}
-          />
-          <label>End Date: </label>
-          <input
-            type="text"
-            name="end-date" // CHANGE NAME TO MATCH STATE VARIABLE
-            placeholder="End Date"
-            value={this.state.endDate}
-            onChange={this.handleChange}
-          />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className="Practical">
+      <h3>Practical</h3>
+      <form onSubmit={handleSubmit}>
+        <label>Name: </label>
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <label>Position: </label>
+        <input
+          type="text"
+          name="position"
+          placeholder="Study"
+          value={position}
+          onChange={(e) => setPosition(e.target.value)}
+        />
+        <label>Responsibilities: </label>
+        <input
+          type="text"
+          name="responsibilities"
+          placeholder="Responsibilities"
+          value={responsibilities}
+          onChange={(e) => setResponsibilities(e.target.value)}
+        />
+        <label>Start Date: </label>
+        <input
+          type="text"
+          name="start-date" // CHANGE NAME TO MATCH STATE VARIABLE
+          placeholder="Start Date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+        <label>End Date: </label>
+        <input
+          type="text"
+          name="end-date" // CHANGE NAME TO MATCH STATE VARIABLE
+          placeholder="End Date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
 }
 
 export default PracticalEdit;
