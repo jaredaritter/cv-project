@@ -41,7 +41,7 @@ function EducationEdit(props) {
         <label>Start Date: </label>
         <input
           type="text"
-          name="start-date" // CHANGE NAME TO MATCH STATE VARIABLE
+          name="startDate"
           placeholder="Start Date"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
@@ -49,7 +49,7 @@ function EducationEdit(props) {
         <label>End Date: </label>
         <input
           type="text"
-          name="end-date" // CHANGE NAME TO MATCH STATE VARIABLE
+          name="endDate"
           placeholder="End Date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
