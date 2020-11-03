@@ -8,15 +8,11 @@ import PracticalEdit from './components/PracticalEdit';
 import './App.css';
 
 // TODO
-// PULL CONDITIONAL LOGIC INTO SEPARATE COMPONENTS FOR THE THREE SECTIONS TO REDUCE CLUTTER IN THE APP RENDER FUNCTION
+// MOVE STATE TO INDIVIDUAL COMPONENTS
+// USE CONDITIONAL LOGIC TO CHOOSE BETWEEN INFORMATION AND FORM
+// SET UP LOCALSTORAGE
 
 function App() {
-  const [general, setGeneral] = useState({
-    name: 'Jared',
-    email: 'awesome@email.com',
-    phone: '555-555-5555',
-    editting: false,
-  });
   const [education, setEducation] = useState({
     name: 'University of Awesome',
     study: 'Awesomeness',
@@ -35,9 +31,7 @@ function App() {
 
   // TECHNICALLY NOT INITIALIZING THE HOOK USING CONDITIONALS SO SHOULD NOT BE A PROBLEM
   const setEditting = (section) => {
-    if (section === 'general') {
-      setGeneral({ ...general, editting: true });
-    } else if (section === 'education') {
+    if (section === 'education') {
       setEducation({ ...education, editting: true });
     } else if (section === 'practical') {
       setPractical({ ...practical, editting: true });
@@ -49,14 +43,7 @@ function App() {
   // IT'S LIKELY THAT BETTER PRACTICE WOULD BE TO HAVE SEPERATE COMPONENTS WITH CONDITIONAL LOGIC AND THEN SEND RETURN TO THIS RENDER. THIS LOOKS MESSY.
   return (
     <div className="App">
-      {general.editting ? (
-        <GeneralEdit
-          general={general}
-          handleSubmit={(data) => setGeneral(data)}
-        />
-      ) : (
-        <General general={general} setEditting={setEditting} />
-      )}
+      <General />
       {education.editting ? (
         <EducationEdit
           school={education}
