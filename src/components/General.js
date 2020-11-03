@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function General() {
+function General(props) {
   const [general, setGeneral] = useState({
     name: 'Jared',
     email: 'awesome@email.com',
@@ -30,7 +30,7 @@ function General() {
 
   if (general.editting) {
     return (
-      <div className="General">
+      <div className={props.className}>
         <h3>General</h3>
         <form onSubmit={handleSubmit}>
           <label>Name: </label>
@@ -63,7 +63,7 @@ function General() {
     );
   } else {
     return (
-      <div className="General">
+      <div className={props.className}>
         <h3>General</h3>
         <p>{name}</p>
         <p>{email}</p>

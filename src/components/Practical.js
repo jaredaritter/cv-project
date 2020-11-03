@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Practical() {
+function Practical(props) {
   const [practical, setPractical] = useState({
     name: 'Awesome Inc.',
     position: 'Engineer of Awesomeness',
@@ -34,7 +34,7 @@ function Practical() {
 
   if (practical.editting) {
     return (
-      <div className="Practical">
+      <div className={props.className}>
         <h3>Practical</h3>
         <form onSubmit={handleSubmit}>
           <label>Name: </label>
@@ -83,7 +83,7 @@ function Practical() {
     );
   } else {
     return (
-      <div className="Practical">
+      <div className={props.className}>
         <h3>Practical</h3>
         <Company company={practical} />
         <button onClick={setEditting}>Edit</button>

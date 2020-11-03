@@ -11,9 +11,9 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <General />
-      <Education />
-      <Practical />
+      <General className="section" />
+      <Education className="section" />
+      <Practical className="section" />
     </div>
   );
 }

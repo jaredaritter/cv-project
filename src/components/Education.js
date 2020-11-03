@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Education() {
+function Education(props) {
   const [education, setEducation] = useState({
     name: 'University of Awesome',
     study: 'Awesomeness',
@@ -32,7 +32,7 @@ function Education() {
 
   if (education.editting) {
     return (
-      <div className="Education">
+      <div className={props.className}>
         <h3>Education</h3>
         <form onSubmit={handleSubmit}>
           <label>Name: </label>
@@ -73,7 +73,7 @@ function Education() {
     );
   } else {
     return (
-      <div className="Education">
+      <div className={props.className}>
         <h3>Education</h3>
         <School school={education} />
         <button onClick={setEditting}>Edit</button>
