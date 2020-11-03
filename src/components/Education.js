@@ -1,4 +1,86 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+function Education() {
+  const [education, setEducation] = useState({
+    name: 'University of Awesome',
+    study: 'Awesomeness',
+    startDate: '2000',
+    endDate: 'current',
+    editting: false,
+  });
+  const { name, study, startDate, endDate } = education;
+
+  const setEditting = () => {
+    setEducation({ ...education, editting: true });
+  };
+
+  const handleChange = (e) => {
+    setEducation({ ...education, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formInput = {
+      name: e.target.name.value,
+      study: e.target.study.value,
+      startDate: e.target.startDate.value,
+      endDate: e.target.endDate.value,
+      editting: false,
+    };
+    setEducation(formInput);
+  };
+
+  if (education.editting) {
+    return (
+      <div className="Education">
+        <h3>Education</h3>
+        <form onSubmit={handleSubmit}>
+          <label>Name: </label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={name}
+            onChange={handleChange}
+          />
+          <label>Study: </label>
+          <input
+            type="text"
+            name="study"
+            placeholder="Study"
+            value={study}
+            onChange={handleChange}
+          />
+          <label>Start Date: </label>
+          <input
+            type="text"
+            name="startDate"
+            placeholder="Start Date"
+            value={startDate}
+            onChange={handleChange}
+          />
+          <label>End Date: </label>
+          <input
+            type="text"
+            name="endDate"
+            placeholder="End Date"
+            value={endDate}
+            onChange={handleChange}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    );
+  } else {
+    return (
+      <div className="Education">
+        <h3>Education</h3>
+        <School school={education} />
+        <button onClick={setEditting}>Edit</button>
+      </div>
+    );
+  }
+}
 
 function School(props) {
   return (
@@ -8,22 +90,6 @@ function School(props) {
       <p>
         {props.school.startDate} - {props.school.endDate}
       </p>
-    </div>
-  );
-}
-
-function Education(props) {
-  const section = 'education';
-
-  const setEditting = () => {
-    props.setEditting(section);
-  };
-
-  return (
-    <div className="Education">
-      <h3>Education</h3>
-      <School school={props.school} />
-      <button onClick={setEditting}>Edit</button>
     </div>
   );
 }
