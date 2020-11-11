@@ -5,13 +5,13 @@ function General(props) {
     name: 'Jared',
     email: 'awesome@email.com',
     phone: '555-555-5555',
-    editting: false,
   });
+  const [editting, setEditting] = useState(false);
   const { name, email, phone } = general;
 
-  const setEditting = () => {
-    setGeneral({ ...general, editting: true });
-  };
+  // const setEditting = () => {
+  //   setGeneral({ ...general, editting: true });
+  // };
 
   const handleChange = (e) => {
     setGeneral({ ...general, [e.target.name]: e.target.value });
@@ -23,12 +23,12 @@ function General(props) {
       name: e.target.name.value,
       email: e.target.email.value,
       phone: e.target.phone.value,
-      editting: false,
     };
     setGeneral(formInput);
+    setEditting(false);
   };
 
-  if (general.editting) {
+  if (editting) {
     return (
       <div className={props.className}>
         <h3>General</h3>
@@ -68,7 +68,7 @@ function General(props) {
         <p>{name}</p>
         <p>{email}</p>
         <p>{phone}</p>
-        <button onClick={setEditting}>Edit</button>
+        <button onClick={() => setEditting(true)}>Edit</button>
       </div>
     );
   }

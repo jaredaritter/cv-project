@@ -6,13 +6,9 @@ function Education(props) {
     study: 'Awesomeness',
     startDate: '2000',
     endDate: 'current',
-    editting: false,
   });
+  const [editting, setEditting] = useState(false);
   const { name, study, startDate, endDate } = education;
-
-  const setEditting = () => {
-    setEducation({ ...education, editting: true });
-  };
 
   const handleChange = (e) => {
     setEducation({ ...education, [e.target.name]: e.target.value });
@@ -25,12 +21,12 @@ function Education(props) {
       study: e.target.study.value,
       startDate: e.target.startDate.value,
       endDate: e.target.endDate.value,
-      editting: false,
     };
     setEducation(formInput);
+    setEditting(false);
   };
 
-  if (education.editting) {
+  if (editting) {
     return (
       <div className={props.className}>
         <h3>Education</h3>
@@ -76,7 +72,7 @@ function Education(props) {
       <div className={props.className}>
         <h3>Education</h3>
         <School school={education} />
-        <button onClick={setEditting}>Edit</button>
+        <button onClick={() => setEditting(true)}>Edit</button>
       </div>
     );
   }

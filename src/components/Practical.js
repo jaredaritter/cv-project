@@ -7,13 +7,9 @@ function Practical(props) {
     responsibilities: 'Making things awesome.',
     startDate: '2005',
     endDate: 'current',
-    editting: false,
   });
+  const [editting, setEditting] = useState(false);
   const { name, position, responsibilities, startDate, endDate } = practical;
-
-  const setEditting = () => {
-    setPractical({ ...practical, editting: true });
-  };
 
   const handleChange = (e) => {
     setPractical({ ...practical, [e.target.name]: e.target.value });
@@ -27,12 +23,12 @@ function Practical(props) {
       responsibilities: e.target.responsibilities.value,
       startDate: e.target.startDate.value,
       endDate: e.target.endDate.value,
-      editting: false,
     };
     setPractical(formInput);
+    setEditting(false);
   };
 
-  if (practical.editting) {
+  if (editting) {
     return (
       <div className={props.className}>
         <h3>Practical</h3>
@@ -86,7 +82,7 @@ function Practical(props) {
       <div className={props.className}>
         <h3>Practical</h3>
         <Company company={practical} />
-        <button onClick={setEditting}>Edit</button>
+        <button onClick={() => setEditting(true)}>Edit</button>
       </div>
     );
   }
