@@ -11,6 +11,17 @@ function Practical(props) {
   const [editting, setEditting] = useState(false);
   const { name, position, responsibilities, startDate, endDate } = practical;
 
+  const clearInputs = (e) => {
+    e.preventDefault();
+    setPractical({
+      name: '',
+      position: '',
+      responsibilities: '',
+      startDate: '',
+      endDate: '',
+    });
+  };
+
   const handleChange = (e) => {
     setPractical({ ...practical, [e.target.name]: e.target.value });
   };
@@ -73,6 +84,9 @@ function Practical(props) {
             value={endDate}
             onChange={handleChange}
           />
+          <button type="button" onClick={clearInputs}>
+            Clear
+          </button>
           <button type="submit">Submit</button>
         </form>
       </div>

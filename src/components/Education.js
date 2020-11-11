@@ -10,6 +10,16 @@ function Education(props) {
   const [editting, setEditting] = useState(false);
   const { name, study, startDate, endDate } = education;
 
+  const clearInputs = (e) => {
+    e.preventDefault();
+    setEducation({
+      name: '',
+      study: '',
+      startDate: '',
+      endDate: '',
+    });
+  };
+
   const handleChange = (e) => {
     setEducation({ ...education, [e.target.name]: e.target.value });
   };
@@ -63,6 +73,9 @@ function Education(props) {
             value={endDate}
             onChange={handleChange}
           />
+          <button type="button" onClick={clearInputs}>
+            Clear
+          </button>
           <button type="submit">Submit</button>
         </form>
       </div>
