@@ -1,6 +1,7 @@
 import React from 'react';
 import General from './components/General';
 import Education from './components/Education';
+import Final from './components/Final';
 import Practical from './components/Practical';
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
       <General className="section" />
       <Education className="section" />
       <Practical className="section" />
+      <Final className="section" />
     </div>
   );
 }
