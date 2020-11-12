@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { addToLocalStorage, checkStorageAndUpdate } from '../utils/Helpers';
 
 function General(props) {
   const [general, setGeneral] = useState({
@@ -8,6 +9,10 @@ function General(props) {
   });
   const [editting, setEditting] = useState(false);
   const { name, email, phone } = general;
+
+  useEffect(() => {
+    checkStorageAndUpdate('general', setGeneral);
+  }, []);
 
   const clearInputs = (e) => {
     e.preventDefault();
@@ -23,13 +28,14 @@ function General(props) {
   };
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const formInput = {
       name: e.target.name.value,
       email: e.target.email.value,
       phone: e.target.phone.value,
     };
     setGeneral(formInput);
+    addToLocalStorage('general', formInput);
     setEditting(false);
   };
 
@@ -76,7 +82,9 @@ function General(props) {
         <p>{name}</p>
         <p>{email}</p>
         <p>{phone}</p>
-        <button onClick={() => setEditting(true)}>Edit</button>
+        <button type="button" onClick={() => setEditting(true)}>
+          Edit
+        </button>
       </div>
     );
   }
