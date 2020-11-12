@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { addToLocalStorage, checkStorageAndUpdate } from '../utils/Helpers';
 
 function General(props) {
+  const componentName = 'general';
   const [general, setGeneral] = useState({
     name: 'Jared',
     email: 'awesome@email.com',
@@ -11,7 +12,7 @@ function General(props) {
   const { name, email, phone } = general;
 
   useEffect(() => {
-    checkStorageAndUpdate('general', setGeneral);
+    checkStorageAndUpdate(componentName, setGeneral);
   }, []);
 
   const clearInputs = (e) => {
@@ -35,7 +36,7 @@ function General(props) {
       phone: e.target.phone.value,
     };
     setGeneral(formInput);
-    addToLocalStorage('general', formInput);
+    addToLocalStorage(componentName, formInput);
     setEditting(false);
   };
 

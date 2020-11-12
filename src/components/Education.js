@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { addToLocalStorage, checkStorageAndUpdate } from '../utils/Helpers';
 
 function Education(props) {
+  const componentName = 'education';
   const [education, setEducation] = useState({
     name: 'University of Awesome',
     study: 'Awesomeness',
@@ -9,6 +11,10 @@ function Education(props) {
   });
   const [editting, setEditting] = useState(false);
   const { name, study, startDate, endDate } = education;
+
+  useEffect(() => {
+    checkStorageAndUpdate(componentName, setEducation);
+  }, []);
 
   const clearInputs = (e) => {
     e.preventDefault();
@@ -33,6 +39,7 @@ function Education(props) {
       endDate: e.target.endDate.value,
     };
     setEducation(formInput);
+    addToLocalStorage(componentName, formInput);
     setEditting(false);
   };
 

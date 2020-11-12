@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { addToLocalStorage, checkStorageAndUpdate } from '../utils/Helpers';
 
 function Practical(props) {
+  const componentName = 'practical';
   const [practical, setPractical] = useState({
     name: 'Awesome Inc.',
     position: 'Engineer of Awesomeness',
@@ -10,6 +12,10 @@ function Practical(props) {
   });
   const [editting, setEditting] = useState(false);
   const { name, position, responsibilities, startDate, endDate } = practical;
+
+  useEffect(() => {
+    checkStorageAndUpdate(componentName, setPractical);
+  }, []);
 
   const clearInputs = (e) => {
     e.preventDefault();
@@ -36,6 +42,7 @@ function Practical(props) {
       endDate: e.target.endDate.value,
     };
     setPractical(formInput);
+    addToLocalStorage(componentName, formInput);
     setEditting(false);
   };
 
