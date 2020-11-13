@@ -3,13 +3,7 @@ import { addToLocalStorage, checkStorageAndUpdate } from '../utils/Helpers';
 
 function Practical(props) {
   const componentName = 'practical';
-  const [practical, setPractical] = useState({
-    name: 'Awesome Inc.',
-    position: 'Engineer of Awesomeness',
-    responsibilities: 'Making things awesome.',
-    startDate: '2005',
-    endDate: 'current',
-  });
+  const [practical, setPractical] = useState({});
   const [editting, setEditting] = useState(false);
   const { name, position, responsibilities, startDate, endDate } = practical;
 

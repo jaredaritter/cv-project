@@ -3,18 +3,17 @@ import { addToLocalStorage, checkStorageAndUpdate } from '../utils/Helpers';
 
 function Education(props) {
   const componentName = 'education';
-  const [education, setEducation] = useState({
-    name: 'University of Awesome',
-    study: 'Awesomeness',
-    startDate: '2000',
-    endDate: 'current',
-  });
+  const [education, setEducation] = useState([{}]);
   const [editting, setEditting] = useState(false);
-  const { name, study, startDate, endDate } = education;
+  // const { name, study, startDate, endDate } = education[0];
 
   useEffect(() => {
     checkStorageAndUpdate(componentName, setEducation);
   }, []);
+
+  useEffect(() => {
+    addToLocalStorage(componentName, education); // MOVE TO USE EFFECT?
+  }, [education]);
 
   const clearInputs = (e) => {
     e.preventDefault();
@@ -27,7 +26,7 @@ function Education(props) {
   };
 
   const handleChange = (e) => {
-    setEducation({ ...education, [e.target.name]: e.target.value });
+    setEducation([{ ...education[0], [e.target.name]: e.target.value }]);
   };
 
   const handleSubmit = (e) => {
@@ -38,8 +37,7 @@ function Education(props) {
       startDate: e.target.startDate.value,
       endDate: e.target.endDate.value,
     };
-    setEducation(formInput);
-    addToLocalStorage(componentName, formInput);
+    setEducation([formInput]);
     setEditting(false);
   };
 
@@ -53,7 +51,7 @@ function Education(props) {
             type="text"
             name="name"
             placeholder="Name"
-            value={name}
+            value={education[0].name}
             onChange={handleChange}
           />
           <label>Study: </label>
@@ -61,7 +59,7 @@ function Education(props) {
             type="text"
             name="study"
             placeholder="Study"
-            value={study}
+            value={education[0].study}
             onChange={handleChange}
           />
           <label>Start Date: </label>
@@ -69,7 +67,7 @@ function Education(props) {
             type="text"
             name="startDate"
             placeholder="Start Date"
-            value={startDate}
+            value={education[0].startDate}
             onChange={handleChange}
           />
           <label>End Date: </label>
@@ -77,7 +75,7 @@ function Education(props) {
             type="text"
             name="endDate"
             placeholder="End Date"
-            value={endDate}
+            value={education[0].endDate}
             onChange={handleChange}
           />
           <button type="button" onClick={clearInputs}>
@@ -91,7 +89,7 @@ function Education(props) {
     return (
       <div className={props.className}>
         <h3>Education</h3>
-        <School school={education} />
+        <School school={education[0]} />
         <button onClick={() => setEditting(true)}>Edit</button>
       </div>
     );

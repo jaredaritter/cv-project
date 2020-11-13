@@ -3,11 +3,7 @@ import { addToLocalStorage, checkStorageAndUpdate } from '../utils/Helpers';
 
 function General(props) {
   const componentName = 'general';
-  const [general, setGeneral] = useState({
-    name: 'Jared',
-    email: 'awesome@email.com',
-    phone: '555-555-5555',
-  });
+  const [general, setGeneral] = useState({});
   const [editting, setEditting] = useState(false);
   const { name, email, phone } = general;
 
